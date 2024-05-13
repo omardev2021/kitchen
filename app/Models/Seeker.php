@@ -15,6 +15,11 @@ class Seeker extends Model
         // Assuming the foreign key is 'seeker_id' in the 'Matching' table
     }
 
+    public function cities() {
+        return $this->belongsToMany(City::class);
+        // Assuming the foreign key is 'seeker_id' in the 'Matching' table
+    }
+
     public function food() {
         return $this->belongsTo(Food::class, 'food_id');
         // Assuming the foreign key is 'seeker_id' in the 'Matching' table

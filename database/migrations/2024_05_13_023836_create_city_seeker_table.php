@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('providers', function (Blueprint $table) {
+        Schema::create('city_seeker', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->integer('location_no')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
-            $table->unsignedBigInteger('food_id')->nullable();
+            $table->unsignedBigInteger('seeker_id')->nullable();
 
 
             $table->foreign('city_id')
@@ -26,9 +22,9 @@ return new class extends Migration
                 ->on('cities')
                 ->onDelete('set null');
 
-            $table->foreign('food_id')
+            $table->foreign('seeker_id')
                 ->references('id')
-                ->on('food')
+                ->on('seekers')
                 ->onDelete('set null');
             $table->timestamps();
         });
@@ -39,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('providers');
+        Schema::dropIfExists('city_seeker');
     }
 };

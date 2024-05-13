@@ -19,7 +19,9 @@ class SubmissionController extends Controller
            'location_no'=>'required'
         ]);
 
-       Seeker::create($validated_arr);
+       $seeker = Seeker::create($validated_arr);
+
+        $seeker->cities()->attach($request->cities);
         $request->session()->flash('success', 'We will contact you shortly if there is a match.');
 
        return redirect()->route('home');
